@@ -8,7 +8,7 @@ import { translateWord } from '../redux/dictionarySlice';
 const TranslateWordModal = ({ setShow }) => {
     const [word, setWord] = useState('');
     const [selectedLanguage, setSelectedLanguage] = useState('es'); // Default to Spanish
-    const [translation, setTranslation] = useState({});
+    const [translation, setTranslation] = useState('');
     const dispatch = useDispatch();
 
     const handleTranslate = async () => {
@@ -16,7 +16,7 @@ const TranslateWordModal = ({ setShow }) => {
         const result = await dispatch(translateWord({ word, language: selectedLanguage }));
 
         // Ensure the result is correctly set to translation
-        const translatedText = result.payload ? result.payload : 'Not Found';
+        const translatedText = result.words ? result.words : 'Not Found';
         setTranslation(translatedText); // Set translation state
     };
 
@@ -54,7 +54,7 @@ const TranslateWordModal = ({ setShow }) => {
                     fullWidth
                     multiline
                     rows={4}
-                    value={translation.word}
+                    value={translation}
                     disabled
                     margin="normal"
                 />
