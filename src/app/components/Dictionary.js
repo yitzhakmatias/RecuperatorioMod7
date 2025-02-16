@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Container, Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import AddWordModal from './AddWordModal';
 import RemoveWordModal from './RemoveWordModal';
 import TranslateWordModal from './TranslateWordModal';

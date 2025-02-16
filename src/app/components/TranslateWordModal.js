@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
