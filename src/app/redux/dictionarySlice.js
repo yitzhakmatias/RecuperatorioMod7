@@ -58,13 +58,16 @@ const dictionarySlice = createSlice({
                 : [];
 
             // Find word in the words array (checking by language)
-            const foundWord = storedWords.find(item => item[language] === word);
+            const foundWord = storedWords.find(item => {
+                if(item['es'] === word ){
+                    return item[language];
+                }
+            });
             if (foundWord) {
                 action.words = foundWord[language];
 
             } else {
                 action.words =  'Not Found';
-
             }
             return action.payload;
         },

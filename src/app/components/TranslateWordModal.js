@@ -22,7 +22,7 @@ const TranslateWordModal = ({ setShow }) => {
 
     return (
         <Dialog open={true} onClose={() => setShow(false)}>
-            <DialogTitle>Translate Word</DialogTitle>
+            <DialogTitle>USIP translator</DialogTitle>
             <DialogContent>
                 {/* Word input */}
                 <TextField
@@ -43,7 +43,7 @@ const TranslateWordModal = ({ setShow }) => {
                         label="Language"
                     >
                         <MenuItem value="es">Spanish (es)</MenuItem>
-                        <MenuItem value="eu">English (en)</MenuItem>
+                        <MenuItem value="en">English (en)</MenuItem>
                         <MenuItem value="pt">Portuguese (pt)</MenuItem>
                     </Select>
                 </FormControl>
