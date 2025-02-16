@@ -4,6 +4,7 @@ import Navbar from "@/app/components/Navbar";
 import {Provider} from "react-redux";
 import {store} from './redux/store';
 import ClientWrapper from "@/app/components/ClientWrapper";
+import LoadWords from "@/app/components/LoadWords";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -25,6 +26,7 @@ export default function RootLayout({children}) {
         <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ClientWrapper>
+            <LoadWords />  {/* Load words into Redux state */}
             <Navbar/>
             {children}
         </ClientWrapper>

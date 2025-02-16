@@ -1,24 +1,30 @@
-"use client";
+'use client'; // Ensure this is treated as a client-side component
+
 import React, { useState } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField, Typography } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField, Typography, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { translateWord } from '../redux/dictionarySlice';
 
 const TranslateWordModal = ({ setShow }) => {
     const [word, setWord] = useState('');
-    const [translation, setTranslation] = useState('');
+    const [selectedLanguage, setSelectedLanguage] = useState('es'); // Default to Spanish
+    const [translation, setTranslation] = useState({});
     const dispatch = useDispatch();
 
-    const handleTranslate = () => {
-        const result = dispatch(translateWord(word));
-        setTranslation(result.payload ? JSON.stringify(result.payload) : 'Not Found');
-        setShow(false);
+    const handleTranslate = async () => {
+        // Dispatch the translate action and get the result
+        const result = await dispatch(translateWord({ word, language: selectedLanguage }));
+
+        // Ensure the result is correctly set to translation
+        const translatedText = result.payload ? result.payload : 'Not Found';
+        setTranslation(translatedText); // Set translation state
     };
 
     return (
         <Dialog open={true} onClose={() => setShow(false)}>
             <DialogTitle>Translate Word</DialogTitle>
             <DialogContent>
+                {/* Word input */}
                 <TextField
                     label="Enter Word to Translate"
                     variant="outlined"
@@ -27,16 +33,38 @@ const TranslateWordModal = ({ setShow }) => {
                     onChange={(e) => setWord(e.target.value)}
                     margin="normal"
                 />
-                {translation && (
-                    <Typography variant="body1" style={{ marginTop: '10px' }}>
-                        Translation: {translation}
-                    </Typography>
-                )}
+
+                {/* Language dropdown */}
+                <FormControl fullWidth margin="normal">
+                    <InputLabel>Language</InputLabel>
+                    <Select
+                        value={selectedLanguage}
+                        onChange={(e) => setSelectedLanguage(e.target.value)}
+                        label="Language"
+                    >
+                        <MenuItem value="es">Spanish (es)</MenuItem>
+                        <MenuItem value="eu">English (en)</MenuItem>
+                        <MenuItem value="pt">Portuguese (pt)</MenuItem>
+                    </Select>
+                </FormControl>
+
+                {/* Translated word output */}
+                <TextField
+                    variant="outlined"
+                    fullWidth
+                    multiline
+                    rows={4}
+                    value={translation.word}
+                    disabled
+                    margin="normal"
+                />
             </DialogContent>
             <DialogActions>
+                {/* Close button */}
                 <Button onClick={() => setShow(false)} color="secondary">
-                    Cancel
+                    Close
                 </Button>
+                {/* Translate button */}
                 <Button onClick={handleTranslate} color="primary">
                     Translate
                 </Button>

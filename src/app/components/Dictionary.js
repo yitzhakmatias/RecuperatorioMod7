@@ -13,7 +13,7 @@ const Dictionary = () => {
     return (
         <Container>
             <Typography variant="h4" gutterBottom>
-                Dictionary Module
+                Dictionary USIP
             </Typography>
 
             <Button variant="contained" color="primary" onClick={() => setShowAddModal(true)} style={{ marginRight: '10px' }}>
