@@ -13,6 +13,7 @@ pnpm dev
 # or
 bun dev
 ```
+![img.png](img.png)
 
 Open [https://yitzhakmatias.github.io/RecuperatorioMod7](https://yitzhakmatias.github.io/RecuperatorioMod7) with your browser to see the result.
 
